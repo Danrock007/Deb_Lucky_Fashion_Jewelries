@@ -1,0 +1,48 @@
+.shop-page {
+  padding: 60px 40px 40px;
+  text-align: center;
+
+  @media (max-width: 760px) {
+    padding: 36px 20px 28px;
+  }
+}
+
+.shop-page h1 {
+  margin: 0 0 12px;
+}
+
+.shop-page > p {
+  color: var(--text);
+  margin-bottom: 36px;
+}
+
+.category-filter {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 48px;
+}
+
+.category-filter button {
+  padding: 10px 20px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-h);
+  font-size: 13px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.category-filter button:hover {
+  border-color: var(--text-h);
+}
+
+.category-filter button.is-active {
+  background: var(--text-h);
+  color: var(--bg);
+  border-color: var(--text-h);
+}
