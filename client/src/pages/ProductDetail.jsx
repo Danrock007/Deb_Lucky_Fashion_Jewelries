@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import ProductGrid from "../components/ProductGrid";
-import { useCart } from "../context/CartContext.jsx";
+import { useCart } from "../context/useCart.js";
 import { formatPrice } from "../utils/formatPrice.js";
 import { fetchProducts } from "../utils/api.js";
 import "./ProductDetail.css";

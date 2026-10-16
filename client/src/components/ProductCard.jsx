@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useCart } from "../context/CartContext.jsx";
+import { useCart } from "../context/useCart.js";
 import { formatPrice } from "../utils/formatPrice.js";
 
 function ProductCard({ product }) {

@@ -43,16 +43,9 @@ function Shop() {
   }, []);
 
   const categoryFromUrl = searchParams.get("category");
-  const initialCategory = categories.includes(categoryFromUrl) ? categoryFromUrl : "All";
-  const [activeCategory, setActiveCategory] = useState(initialCategory);
-
-  useEffect(() => {
-    const fromUrl = searchParams.get("category");
-    setActiveCategory(categories.includes(fromUrl) ? fromUrl : "All");
-  }, [categories, searchParams]);
+  const activeCategory = categories.includes(categoryFromUrl) ? categoryFromUrl : "All";
 
   function handleCategoryClick(category) {
-    setActiveCategory(category);
     if (category === "All") {
       setSearchParams({});
     } else {

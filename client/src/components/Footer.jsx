@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import Logo from "./Logo.jsx";
 import "./Footer.css";
 
+const COPYRIGHT_YEAR = new Date().getFullYear();
+
 const FOOTER_LINKS = [
   {
     heading: "Shop",
@@ -30,11 +32,6 @@ const FOOTER_LINKS = [
 ];
 
 function Footer() {
-  function handleNewsletterSubmit(e) {
-    e.preventDefault();
-    // TODO: wire up to an email provider
-  }
-
   return (
     <footer className="footer">
       <div className="footer-main">
@@ -61,15 +58,14 @@ function Footer() {
         <div className="footer-newsletter">
           <h3>Stay in the Loop</h3>
           <p>New arrivals, private sales, and styling tips.</p>
-          <form onSubmit={handleNewsletterSubmit}>
-            <input type="email" placeholder="Your email" required />
-            <button type="submit">Subscribe</button>
-          </form>
+          <p className="footer-newsletter-status">
+            Newsletter sign-up will be available soon.
+          </p>
         </div>
       </div>
 
       <div className="footer-bottom">
-        <p>&copy; {new Date().getFullYear()} Deb Lucky Fashion Jewelries. All rights reserved.</p>
+        <p>&copy; {COPYRIGHT_YEAR} Deb Lucky Fashion Jewelries. All rights reserved.</p>
       </div>
     </footer>
   );

@@ -1,20 +1,31 @@
 import { useState } from "react";
 import Navbar from "../components/Navbar";
+import { submitContactMessage } from "../utils/api.js";
 import "./Contact.css";
 
 function Contact() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [sent, setSent] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
   function handleChange(e) {
     const { name, value } = e.target;
     setForm((prev) => ({ ...prev, [name]: value }));
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
-    // TODO: wire this up to an actual email/backend endpoint
-    setSent(true);
+    setIsSubmitting(true);
+    setSubmitError("");
+    try {
+      await submitContactMessage(form);
+      setSent(true);
+    } catch (error) {
+      setSubmitError(error.message || "We couldn't send your message. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (
@@ -42,7 +53,7 @@ function Contact() {
           </div>
 
           {sent ? (
-            <div className="contact-success">
+            <div className="contact-success" role="status">
               <h2>Message sent</h2>
               <p>Thanks for reaching out — we'll get back to you shortly.</p>
             </div>
@@ -55,6 +66,7 @@ function Contact() {
                   name="name"
                   value={form.name}
                   onChange={handleChange}
+                  maxLength={200}
                   required
                 />
               </label>
@@ -66,6 +78,7 @@ function Contact() {
                   name="email"
                   value={form.email}
                   onChange={handleChange}
+                  maxLength={254}
                   required
                 />
               </label>
@@ -77,12 +90,16 @@ function Contact() {
                   rows={5}
                   value={form.message}
                   onChange={handleChange}
+                  maxLength={5000}
                   required
                 />
               </label>
 
-              <button type="submit" className="contact-submit">
-                Send Message
+              {submitError && (
+                <p className="contact-error" role="alert">{submitError}</p>
+              )}
+              <button type="submit" className="contact-submit" disabled={isSubmitting}>
+                {isSubmitting ? "Sending..." : "Send Message"}
               </button>
             </form>
           )}

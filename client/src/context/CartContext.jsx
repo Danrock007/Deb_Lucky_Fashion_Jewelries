@@ -1,6 +1,6 @@
-import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { CartContext } from "./cart-context.js";
 
-const CartContext = createContext(null);
 const STORAGE_KEY = "dlj_cart_items";
 
 // Placeholder promo codes — swap for a real lookup against the backend
@@ -112,10 +112,4 @@ export function CartProvider({ children }) {
   };
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
-}
-
-export function useCart() {
-  const ctx = useContext(CartContext);
-  if (!ctx) throw new Error("useCart must be used within a CartProvider");
-  return ctx;
 }

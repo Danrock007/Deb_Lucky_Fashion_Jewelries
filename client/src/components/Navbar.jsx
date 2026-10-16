@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useCart } from "../context/CartContext.jsx";
+import { useCart } from "../context/useCart.js";
 import { Link } from "react-router-dom";
 import Logo from "./Logo.jsx";
 import "./Navbar.css";

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import Navbar from "../components/Navbar";
-import { useCart } from "../context/CartContext.jsx";
+import { useCart } from "../context/useCart.js";
 import { formatPrice } from "../utils/formatPrice.js";
 import { prepareOrder, verifyOrderPayment } from "../utils/api.js";
 import "./Checkout.css";

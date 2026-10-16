@@ -92,3 +92,28 @@ export async function verifyOrderPayment(reference) {
 
   return data;
 }
+
+export async function submitContactMessage(payload) {
+  const response = await fetch(`${API_BASE}/contact/`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+
+  const data = await parseJson(response);
+  if (!response.ok) {
+    const message =
+      (data &&
+        (data.detail ||
+          data.email ||
+          data.name ||
+          data.message ||
+          "Unable to send your message")) ||
+      "Unable to send your message";
+    throw new Error(
+      typeof message === "string" ? message : JSON.stringify(message),
+    );
+  }
+
+  return data;
+}
