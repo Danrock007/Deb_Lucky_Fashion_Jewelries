@@ -19,16 +19,16 @@ function CartDrawer() {
         onClick={close}
         aria-hidden="true"
       />
-      <aside className={`cart-drawer ${isOpen ? "is-open" : ""}`} aria-label="Shopping bag">
+      <aside className={`cart-drawer ${isOpen ? "is-open" : ""}`} aria-label="Shopping cart">
         <div className="cart-drawer-header">
-          <h2>Your Bag</h2>
-          <button className="cart-drawer-close" onClick={close} aria-label="Close bag">
+          <h2>Your Cart</h2>
+          <button className="cart-drawer-close" onClick={close} aria-label="Close cart">
             ✕
           </button>
         </div>
 
         {items.length === 0 ? (
-          <p className="cart-drawer-empty">Your bag is empty.</p>
+          <p className="cart-drawer-empty">Your cart is empty.</p>
         ) : (
           <>
             <ul className="cart-drawer-items">

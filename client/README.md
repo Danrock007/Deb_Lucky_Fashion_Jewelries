@@ -10,12 +10,34 @@ Website for **Deb Lucky Fashion Jewelries** — a luxury jewellery brand. Built 
 
 ## Getting Started
 
-From the repository root, install the workspace dependencies and start the client:
+The storefront reads products and categories from the Django backend, submits
+contact messages there, and prepares/verifies Paystack orders through it. Run
+the backend and storefront in separate terminals.
+
+First, from the backend repository root, install its requirements and start
+Django:
+
+```bash
+pip install -r requirements.txt
+python manage.py migrate
+python manage.py runserver 8000
+```
+
+Then, from this repository root, install the workspace dependencies and start
+the client:
 
 ```bash
 npm install
 npm run dev
 ```
+
+`client/.env.example` sets `VITE_API_URL=/api`. Vite proxies those requests to
+`http://localhost:8000`, so no cross-origin configuration is needed for local
+development. Populate the catalog through Django admin at
+`http://localhost:8000/admin/`; configure Paystack and contact email settings
+in the backend environment to enable payments and contact delivery. Customer
+registration sends an email verification link; configure backend SMTP and set
+`ACCOUNT_VERIFICATION_URL` to the storefront's `/account/verify` URL.
 
 ## Production build
 

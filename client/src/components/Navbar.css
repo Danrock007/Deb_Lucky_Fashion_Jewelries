@@ -96,6 +96,171 @@
   height: 20px;
 }
 
+.account-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  overflow-y: auto;
+  background: rgb(0 0 0 / 45%);
+}
+
+.account-dialog {
+  position: relative;
+  width: min(100%, 420px);
+  max-height: calc(100vh - 40px);
+  padding: 36px;
+  overflow-y: auto;
+  background: var(--bg);
+  color: var(--text);
+  box-shadow: 0 16px 48px rgb(0 0 0 / 20%);
+}
+
+.account-dialog h2 {
+  margin: 0 32px 16px 0;
+  color: var(--text-h);
+}
+
+.account-dialog p {
+  line-height: 1.6;
+}
+
+.account-dialog a {
+  display: inline-block;
+  margin-top: 8px;
+  color: var(--text-h);
+  text-underline-offset: 4px;
+}
+
+.account-mode-switch {
+  display: flex;
+  gap: 8px;
+  margin: 20px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.account-mode-switch button,
+.account-link-button {
+  padding: 10px 4px;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: none;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.account-mode-switch button.is-active {
+  border-bottom-color: var(--accent);
+  color: var(--text-h);
+}
+
+.account-auth-form,
+.account-profile-form {
+  display: grid;
+  gap: 14px;
+}
+
+.account-auth-form label,
+.account-profile-form label {
+  display: grid;
+  gap: 6px;
+  font-size: 14px;
+}
+
+.account-auth-form input,
+.account-profile-form input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+  font: inherit;
+}
+
+.account-auth-form > button,
+.account-profile-form > button,
+.account-secondary-button {
+  min-height: 42px;
+  padding: 10px 14px;
+  border: 1px solid var(--text-h);
+  background: var(--text-h);
+  color: var(--bg);
+  font: inherit;
+  cursor: pointer;
+}
+
+.account-auth-form button:disabled,
+.account-profile-form button:disabled,
+.account-secondary-button:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+
+.account-help,
+.account-contact-prompt {
+  font-size: 13px;
+}
+
+.account-error {
+  color: #a32626;
+}
+
+.account-notice {
+  color: #22633a;
+}
+
+.account-link-button {
+  color: var(--text-h);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.account-dialog h3 {
+  margin-bottom: 8px;
+  color: var(--text-h);
+}
+
+.account-orders {
+  display: grid;
+  gap: 12px;
+  max-height: 260px;
+  margin: 0 0 20px;
+  padding: 0;
+  overflow-y: auto;
+  list-style: none;
+}
+
+.account-orders > li {
+  padding: 12px;
+  border: 1px solid var(--border);
+}
+
+.account-orders > li > strong,
+.account-orders > li > span,
+.account-orders > li > time {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.account-orders ul {
+  padding-left: 20px;
+  font-size: 13px;
+}
+
+.account-dialog-close {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  padding: 4px 8px;
+  border: 0;
+  background: none;
+  color: var(--text-h);
+  font-size: 24px;
+  cursor: pointer;
+}
+
 .navbar-bag {
   position: relative;
 }

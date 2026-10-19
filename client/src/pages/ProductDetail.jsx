@@ -118,7 +118,7 @@ function ProductDetail() {
             </div>
 
             <button className="product-detail-add" onClick={handleAddToCart}>
-              Add to Bag
+              Add to Cart
             </button>
 
             <ul className="product-detail-meta">

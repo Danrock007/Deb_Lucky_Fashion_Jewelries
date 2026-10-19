@@ -1,0 +1,21 @@
+.account-verification {
+  width: min(100% - 40px, 680px);
+  min-height: 40vh;
+  margin: 64px auto;
+  text-align: center;
+}
+
+.account-verification h1 {
+  color: var(--text-h);
+}
+
+.account-verification p {
+  line-height: 1.6;
+}
+
+.account-verification-link {
+  display: inline-block;
+  margin-top: 20px;
+  color: var(--text-h);
+  text-underline-offset: 4px;
+}

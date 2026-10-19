@@ -8,6 +8,7 @@ import ProductDetail from "./pages/ProductDetail";
 import Checkout from "./pages/Checkout";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import AccountVerification from "./pages/AccountVerification";
 import Footer from "./components/Footer";
 import CartDrawer from "./components/CartDrawer";
 import { CartProvider } from "./context/CartContext";
@@ -27,6 +28,7 @@ function App() {
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/account/verify" element={<AccountVerification />} />
         </Routes>
         <Footer />
         <CartDrawer />

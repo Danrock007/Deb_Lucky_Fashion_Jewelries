@@ -166,7 +166,7 @@ function Checkout() {
       <>
         <Navbar />
         <main className="checkout-empty">
-          <h1>Your bag is empty</h1>
+          <h1>Your cart is empty</h1>
           <p>Add a few pieces before checking out.</p>
           <Link to="/shop" className="checkout-back-link">Browse the Shop</Link>
         </main>

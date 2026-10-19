@@ -1,4 +1,5 @@
 const API_BASE = (import.meta.env.VITE_API_URL || "/api").replace(/\/$/, "");
+const accountVerificationRequests = new Map();
 
 function normalizeProduct(product) {
   return {
@@ -19,6 +20,85 @@ async function parseJson(response) {
     return null;
   }
   return response.json();
+}
+
+async function accountRequest(path, { method = "GET", body } = {}) {
+  const headers = {};
+  if (body !== undefined) headers["Content-Type"] = "application/json";
+
+  if (method !== "GET" && method !== "HEAD") {
+    const csrfResponse = await fetch(`${API_BASE}/accounts/csrf/`, {
+      credentials: "include",
+    });
+    const csrfData = await parseJson(csrfResponse);
+    if (!csrfResponse.ok || !csrfData?.csrf_token) {
+      throw new Error("Unable to start a secure account session. Please try again.");
+    }
+    headers["X-CSRFToken"] = csrfData.csrf_token;
+  }
+
+  const response = await fetch(`${API_BASE}${path}`, {
+    method,
+    credentials: "include",
+    headers,
+    body: body === undefined ? undefined : JSON.stringify(body),
+  });
+  const data = await parseJson(response);
+  if (!response.ok) {
+    const message =
+      data?.detail ||
+      Object.values(data || {}).flat().find((value) => typeof value === "string") ||
+      "The account request could not be completed.";
+    throw new Error(typeof message === "string" ? message : JSON.stringify(message));
+  }
+  return data;
+}
+
+export async function fetchCurrentAccount() {
+  const response = await fetch(`${API_BASE}/accounts/me/`, {
+    credentials: "include",
+  });
+  if (response.status === 401 || response.status === 403) return null;
+  const data = await parseJson(response);
+  if (!response.ok) throw new Error("Unable to load your account.");
+  return data?.authenticated === false ? null : data;
+}
+
+export function registerAccount(payload) {
+  return accountRequest("/accounts/register/", { method: "POST", body: payload });
+}
+
+export function loginAccount(payload) {
+  return accountRequest("/accounts/login/", { method: "POST", body: payload });
+}
+
+export function verifyAccountEmail(token) {
+  if (!accountVerificationRequests.has(token)) {
+    const request = accountRequest("/accounts/verify-email/", {
+      method: "POST",
+      body: { token },
+    }).finally(() => accountVerificationRequests.delete(token));
+    accountVerificationRequests.set(token, request);
+  }
+  return accountVerificationRequests.get(token);
+}
+
+export function resendAccountVerification(email) {
+  return accountRequest("/accounts/resend-verification/", {
+    method: "POST",
+    body: { email },
+  });
+}
+
+export function updateAccountProfile(name) {
+  return accountRequest("/accounts/me/", {
+    method: "PATCH",
+    body: { name },
+  });
+}
+
+export function logoutAccount() {
+  return accountRequest("/accounts/logout/", { method: "POST" });
 }
 
 async function fetchAllPages(path) {
