@@ -71,6 +71,13 @@ to Django. See `.env.example` for the build-time variable.
 The storefront does not bundle payment credentials. Paystack transactions are
 initialized and verified by Django using the server-only `PAYSTACK_SECRET_KEY`.
 
+### Deploying to Vercel
+
+Import the repository with the project root set to the repository root.
+`vercel.json` builds the npm workspace and publishes `client/dist`, with a
+rewrite for the client-side routes. Configure `VITE_API_URL` in the Vercel
+project settings to point to the deployed backend API (including `/api`).
+
 ## Notes
 
 For TypeScript support and type-aware linting, see the [Vite TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts).
