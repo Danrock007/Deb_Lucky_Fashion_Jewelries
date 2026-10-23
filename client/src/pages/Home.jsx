@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
-import heroVideo from "../assets/videos/Vid-2.mp4";
+import heroVideo from "../assets/Videos/Vid-2.mp4";
 import "./Home.css";
 
 function Home() {

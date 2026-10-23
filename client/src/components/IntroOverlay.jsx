@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
-import video1 from "../assets/videos/Vid-1.mp4";
-import video2 from "../assets/videos/Vid-2.mp4";
+import video1 from "../assets/Videos/Vid-1.mp4";
+import video2 from "../assets/Videos/Vid-2.mp4";
 import "./IntroOverlay.css";
 
 const VIDEOS = [video1, video2];
